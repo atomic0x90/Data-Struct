@@ -20,10 +20,15 @@ Node* Insert_Number(Node* head,int data)
 	}
 	else
 	{
-		Node* temp = (Node*)malloc(sizeof(Node));
-		temp->link = head;
-		temp->value = data;
-		return temp;
+		Node* tail = (Node*)malloc(sizeof(Node));
+		Node* New = (Node*)malloc(sizeof(Node));
+		tail = head;
+		New->value = data;
+		New->link = NULL;
+		while(tail->link != NULL)
+			tail = tail->link;
+		tail->link = New;
+		return head;
 	}
 }
 /*
@@ -73,6 +78,7 @@ Node* Delete_Number(Node* head,int data)
 	}
 }
 */
+
 int Search_Number(Node* head,int data)
 {
 	if(head == NULL)
