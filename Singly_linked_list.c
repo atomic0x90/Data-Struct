@@ -31,53 +31,41 @@ Node* Insert_Number(Node* head,int data)
 		return head;
 	}
 }
-/*
+
 Node* Delete_Number(Node* head,int data)
 {
 	if(head == NULL)
 		return NULL;
 
-	Node* temp = (Node*)malloc(sizeof(Node));
-	temp = head;
-	if(head->value == data)			//첫번째 위치
-	{
-		temp = head->link;
-		head = temp;
+	Node* temp1 = (Node*)malloc(sizeof(Node));
+	Node* temp2 = (Node*)malloc(sizeof(Node));
+	temp1 = temp2 = head;
 
+	if(head->value == data && head->link == NULL)
+		return NULL;
+	else if(head->value == data && head->link != NULL)
+	{
+		head = head->link;
 		return head;
 	}
-	else
+	
+	temp2 = temp2->link;
+	
+	while(temp2->value != data)
 	{
-		while(head->link->value != data || head->link != NULL)
-		{
-			head = head->link;
-		}
-
-		if(head->link == NULL)		//없음
-		{
-			return head;
-		}
-		else				//찾음
-		{
-			if(head->link->link == NULL)		//찾은 노드가 맨 뒤일때
-			{
-				free(temp);
-				free(head->link);
-				return head;
-			}
-			else			//찾은 노드가 중간일때
-			{
-				temp = head->link->link;
-				free(head->link);
-				head->link = temp;
-				free(temp);
-
-				return head;
-			}
-		}
+		temp1 = temp1->link;
+		temp2 = temp2->link;
 	}
+	
+	if(temp2->link != NULL)
+		temp1->link = temp2->link;
+	else
+		temp1->link = NULL;
+
+	free(temp2);
+	return head;
 }
-*/
+
 
 int Search_Number(Node* head,int data)
 {
@@ -92,6 +80,7 @@ int Search_Number(Node* head,int data)
 		else if(head->value == data)
 			return head->value;
 	}
+	return 0;
 }
 
 void Print_List(Node* head)
@@ -162,7 +151,7 @@ int main()
 			getchar();
 
 			check_duplicated = Search_Number(head,num2);
-/*
+
 			if(check_duplicated != 0)
 			{
 				head = Delete_Number(head,num2);
@@ -170,7 +159,7 @@ int main()
 			}
 			else
 				printf("This number does not exist Linked List...\n");
-*/		}
+		}
 		else if(num1 == 3)	//Search Number
 		{
 			printf("\nPlease enter a number to search Linked List\n");
