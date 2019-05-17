@@ -66,6 +66,52 @@ Node* Delete_Number(Node* head,int data)
 	return head;
 }
 
+void Sort_Ascending_Order(Node* head)
+{
+
+	if(head == NULL)
+		return;
+	int temp_data,check_length = 0;
+	Node* temp1 = (Node*)malloc(sizeof(Node));
+	Node* temp2 = (Node*)malloc(sizeof(Node));
+	temp1 = temp2 = head;
+
+	printf("AAAAAAAAAAAA\n");
+	if(head->link == NULL)
+		return;
+	else
+	{
+		while(temp1->link != NULL)
+		{
+			check_length++;
+			temp1 = temp1->link;
+		}
+		printf("length:%d\n",check_length);
+		printf("BBBBBBBBBBBBBb\n");	
+		temp1 = head;
+		while(check_length)
+		{
+			printf("CCCCCCCCCCC\n");
+			while(temp1)
+			{
+				printf("DDDDDDDDDD\n");
+				if(temp1->value > temp1->link->value && temp1->link != NULL)
+				{
+					temp_data = temp1->value;
+					temp1->value = temp1->link->value;
+					temp1->link->value = temp_data;
+				}
+				if(temp1->link == NULL)
+					break;
+				temp1 = temp1->link;
+			}
+			temp2 = temp2->link;
+			temp1 = temp2;
+			check_length--;
+		}
+
+	}
+}
 
 int Search_Number(Node* head,int data)
 {
@@ -112,7 +158,8 @@ int main()
 	
 		printf("\t1.Insert Number\t\t2.Delete Number\n");
 		printf("\t3.Search Number\t\t4.Print List\n");
-		printf("\t5.List Initialization\t6.Exit Program\n");
+		printf("\t5.List Initialization\t6.Sort Ascending Order\n");
+		printf("\t7.Sort Descending Order\t0.Exit Program\n");
 		printf("-------------------------------------------------------------\n");
 		
 		scanf("%d",&num1);
@@ -203,7 +250,12 @@ int main()
 					printf("Please enter y or n\n\n");
 			}
 		}
-		else if(num1 == 6)	//Exit Program
+		else if(num1 == 6)	//Sort Ascending Order
+		{
+			Sort_Ascending_Order(head);
+			printf("Successfully Sort Ascending Order!\n");
+		}
+		else if(num1 == 0)	//Exit Program
 		{
 			printf("--------------------------------------------------------\n");
 			printf("\t\tThank you for using it ! ! !\n");
@@ -214,7 +266,7 @@ int main()
 		{
 			printf("---------------------------------------------------------\n");
 			printf("\tPlease enter a number (non-character)\n");
-			printf("\tPlease enter a number in the range (1 ~ 8)\n");
+			printf("\tPlease enter a number in the range (0 ~ 7)\n");
 			printf("---------------------------------------------------------\n");
 		}
 	}
