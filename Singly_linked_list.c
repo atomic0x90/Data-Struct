@@ -106,6 +106,43 @@ void Sort_Ascending_Order(Node* head)
 	}
 }
 
+void Sort_Descending_Order(Node* head)
+{
+	if(head == NULL)
+		return;
+	int temp_data,check_length = 1;
+	Node* temp1 = (Node*)malloc(sizeof(Node));
+	temp1 = head;
+
+	if(head->link == NULL)
+		return;
+	else
+	{
+		while(temp1->link != NULL)
+		{
+			check_length++;
+			temp1 = temp1->link;
+		}
+		temp1 = head;
+		while(check_length)
+		{
+			while(temp1->link != NULL)
+			{
+				if(temp1->value < temp1->link->value && temp1->link != NULL)
+				{
+					temp_data = temp1->value;
+					temp1->value = temp1->link->value;
+					temp1->link->value = temp_data;
+				}
+				if(temp1->link == NULL)
+					break;
+				temp1 = temp1->link;
+			}
+			temp1 = head;
+			check_length--;
+		}
+	}
+}
 int Search_Number(Node* head,int data)
 {
 	if(head == NULL)
@@ -168,7 +205,7 @@ int main()
 				getchar();
 				
 				if(num2 < 1)
-					printf("Please check the range of numbers\n\n");
+					printf("Please check the range of numbers ! ! !\n\n");
 				else
 					break;
 			}
@@ -248,12 +285,34 @@ int main()
 			Sort_Ascending_Order(head);
 			printf("Successfully Sort Ascending Order!\n");
 		}
+		else if(num1 == 7)	//Sort Descengin Order
+		{
+			Sort_Descending_Order(head);
+			printf("Successfully Sort Descending Order!\n");
+		}
 		else if(num1 == 0)	//Exit Program
 		{
-			printf("--------------------------------------------------------\n");
-			printf("\t\tThank you for using it ! ! !\n");
-			printf("--------------------------------------------------------\n");
-			break;
+			for(;;)
+			{
+				printf("Are you sure you want to EIXT PROGRAM?\n");
+				printf("\tPlease answer y/n\n");
+				scanf("%c",&answer);
+				getchar();
+
+				if(answer == 'y' || answer == 'Y' || answer == 'n' || answer == 'N')
+					break;
+				else
+					printf("Please enter y or n\n\n");
+			}
+			if(answer == 'y' || answer == 'Y')
+			{
+				printf("--------------------------------------------------------\n");
+				printf("\t\tThank you for using it ! ! !\n");
+				printf("--------------------------------------------------------\n");
+				break;
+			}
+			else
+				continue;
 		}
 		else		//Enter a charater,not number OR out of range
 		{
