@@ -71,12 +71,10 @@ void Sort_Ascending_Order(Node* head)
 
 	if(head == NULL)
 		return;
-	int temp_data,check_length = 0;
+	int temp_data,check_length = 1;
 	Node* temp1 = (Node*)malloc(sizeof(Node));
-	Node* temp2 = (Node*)malloc(sizeof(Node));
-	temp1 = temp2 = head;
+	temp1 = head;
 
-	printf("AAAAAAAAAAAA\n");
 	if(head->link == NULL)
 		return;
 	else
@@ -86,15 +84,11 @@ void Sort_Ascending_Order(Node* head)
 			check_length++;
 			temp1 = temp1->link;
 		}
-		printf("length:%d\n",check_length);
-		printf("BBBBBBBBBBBBBb\n");	
 		temp1 = head;
 		while(check_length)
 		{
-			printf("CCCCCCCCCCC\n");
-			while(temp1)
+			while(temp1->link != NULL)
 			{
-				printf("DDDDDDDDDD\n");
 				if(temp1->value > temp1->link->value && temp1->link != NULL)
 				{
 					temp_data = temp1->value;
@@ -105,8 +99,7 @@ void Sort_Ascending_Order(Node* head)
 					break;
 				temp1 = temp1->link;
 			}
-			temp2 = temp2->link;
-			temp1 = temp2;
+			temp1 = head;
 			check_length--;
 		}
 
