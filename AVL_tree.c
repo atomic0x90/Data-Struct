@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define max(a,b) ((a) > (b) ? (a) : (b))
+#define MAX(a,b) ((a) > (b) ? (a) : (b))
 
 typedef struct NodeStruct
 {
@@ -11,6 +11,15 @@ typedef struct NodeStruct
 }Node;
 
 Node* root = NULL;
+
+Node* Balance_Out(Node*);
+Node* LL(Node*);
+Node* LR(Node*);
+Node* RR(Node*);
+Node* RL(Node*);
+int Find_Height(Node*);
+int Find_Balance(Node*);
+
 int Search_Number(Node* root,int data)
 {
 	if(root == NULL)
@@ -28,10 +37,58 @@ int Search_Number(Node* root,int data)
 
 Node* Insert_Number(Node* root,int data)
 {
+	if(root == NULL)
+	{
+		root = (Node*)malloc(sizeof(Node));
+		root->value = data;
+		root->left = NULL;
+		root->right = NULL;
+	}
+	else if(root->value > data)
+	{
+		root->left = Insert_Number((root->left),data);
+		root = Balance_Out(root);
+	}
+	else if(root->value < data)
+	{
+		root->right = Insert_Number((root->right),data);
+		root = Balance_Out(root);
+	}
+	return root;
 }
 
 Node* Delete_Number(Node* root,int data)
 {
+}
+
+Node* Balance_Out(Node* root)
+{
+	if(root == NULL)
+		return NULL;
+	int check_Balance = Find_Balance(root);
+
+	printf("balance : %d\n",check_Balance);
+	
+	return root;
+}
+
+int Find_Height(Node* root)
+{
+	int temp = 0;
+	if(root != NULL)
+	{
+		temp = 1 + MAX(Find_Height(root->left),Find_Height(root->right));	// +1 : 
+		printf("value:%d %d\n",root->value,temp);
+	}
+	return temp;
+}
+
+int Find_Balance(Node* root)
+{
+	if(root != NULL)
+		return Find_Height(root->left) - Find_Height(root->right);
+	else
+		return 0;
 }
 
 void Print_AVL_tree_Preorder(Node* root)
@@ -145,19 +202,19 @@ int main()
 		{
 			printf("Print_AVL_tree_Preorder-------------------------\n");
 			Print_AVL_tree_Preorder(root);
-			printf("\n-------------------------------------------\n\n");
+			printf("\n------------------------------------------------\n\n");
 		}
 		else if(num == 5)	//Inorder
 		{
 			printf("Print_AVL_tree_Inorder--------------------------\n");
 			Print_AVL_tree_Inorder(root);
-			printf("\n-------------------------------------------\n\n");
+			printf("\n------------------------------------------------\n\n");
 		}
 		else if(num == 6)	//Postorder
 		{
 			printf("Print_AVL_tree_Postorder------------------------\n");
 			Print_AVL_tree_Postorder(root);
-			printf("\n-------------------------------------------\n\n");
+			printf("\n------------------------------------------------\n\n");
 		}
 		else if(num == 7)	//Tree Initialization
 		{
