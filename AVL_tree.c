@@ -66,20 +66,70 @@ Node* Balance_Out(Node* root)
 	if(root == NULL)
 		return NULL;
 	int check_Balance = Find_Balance(root);
-
+		//if "check_Balance" value is positive number, tree tilted to the left
+		//if "check_Balance" value is negative number, tree tilted to the right
+		//if "check_Balance" value is greater than or equal to the absolute value of 2, it is unbalanced
 	printf("balance : %d\n",check_Balance);
 	
+	if(check_Balance > 1)
+	{
+		if(Find_Balance(root->left) > 0)
+			root = LL(root);
+		else
+			root = LR(root);
+	}
+	else if(check_Balance < -1)
+	{
+		if(Find_Balance(root->right) < 0)
+			root = RR(root);
+		else
+			root = RL(root);
+	}
+
 	return root;
+}
+
+Node* LL(Node* root)
+{
+	Node* temp = root->left;
+	root->left = temp->right;
+	temp->right = root;
+
+	return temp;
+}
+
+Node* LR(Node* root)
+{
+	Node* temp = root->left;
+	root->left = RR(temp);
+
+	return LL(root);
+}
+
+Node* RR(Node* root)
+{
+	Node* temp = root->right;
+	root->right = temp->left;
+	temp->left = root;
+
+	return temp;
+}
+
+Node* RL(Node* root)
+{
+	Node* temp = root->right;
+	root->right = LL(temp);
+
+	return RR(root);
 }
 
 int Find_Height(Node* root)
 {
 	int temp = 0;
-	if(root != NULL)
-	{
-		temp = 1 + MAX(Find_Height(root->left),Find_Height(root->right));	// +1 : 
-		printf("value:%d %d\n",root->value,temp);
-	}
+	
+	if(root != NULL)	//if there is no +1, the "temp" is always zero
+		temp = 1 + MAX(Find_Height(root->left),Find_Height(root->right));
+	
 	return temp;
 }
 
