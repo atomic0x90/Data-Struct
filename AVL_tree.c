@@ -69,7 +69,6 @@ Node* Balance_Out(Node* root)
 		//if "check_Balance" value is positive number, tree tilted to the left
 		//if "check_Balance" value is negative number, tree tilted to the right
 		//if "check_Balance" value is greater than or equal to the absolute value of 2, it is unbalanced
-	printf("balance : %d\n",check_Balance);
 	
 	if(check_Balance > 1)
 	{
@@ -150,6 +149,7 @@ void Print_AVL_tree_Preorder(Node* root)
 	Print_AVL_tree_Preorder(root->left);
 	Print_AVL_tree_Preorder(root->right);
 }
+
 void Print_AVL_tree_Inorder(Node* root)
 {
 	if(root == NULL)
@@ -159,6 +159,7 @@ void Print_AVL_tree_Inorder(Node* root)
 	printf("%d ",root->value);
 	Print_AVL_tree_Inorder(root->right);
 }
+
 void Print_AVL_tree_Postorder(Node* root)
 {
 	if(root == NULL)
@@ -168,6 +169,7 @@ void Print_AVL_tree_Postorder(Node* root)
 	Print_AVL_tree_Postorder(root->right);
 	printf("%d ",root->value);
 }
+
 int main()
 {
 	int num;
@@ -293,10 +295,27 @@ int main()
 		}
 		else if(num == 0)	//Exit Program
 		{
-			printf("--------------------------------------------------------\n");
-			printf("\t\tThank you for using it ! ! !\n");
-			printf("--------------------------------------------------------\n");
-			break;
+			for(;;)
+			{
+				printf("Are you sure you want to EIXT PROGRAM?\n");
+				printf("\tPlease answer y/n\n");
+				scanf("%c",&answer);
+				getchar();
+
+				if(answer == 'y' || answer == 'Y' || answer == 'n' || answer == 'N')
+					break;
+				else
+					printf("Please enter y or n\n\n");
+			}
+			if(answer == 'y' || answer == 'Y')
+			{
+				printf("--------------------------------------------------------\n");
+				printf("\t\tThank you for using it ! ! !\n");
+				printf("--------------------------------------------------------\n");
+				break;
+			}
+			else 
+				continue;
 		}
 		else					//Enter a character,not number OR Out of range
 		{
