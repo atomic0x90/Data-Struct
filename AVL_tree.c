@@ -35,6 +35,17 @@ int Search_Number(Node* root,int data)
 		return Search_Number(root->right,data);
 }
 
+Node* Search_Min_Number(Node* root)
+{
+	if(root == NULL)
+		return NULL;
+	
+	if(root->left == NULL)
+		return root;
+	else
+		return Search_Min_Number(root->left);
+}
+
 Node* Insert_Number(Node* root,int data)
 {
 	if(root == NULL)
@@ -59,6 +70,39 @@ Node* Insert_Number(Node* root,int data)
 
 Node* Delete_Number(Node* root,int data)
 {
+	if(root == NULL)
+		return NULL;
+	
+	Node* temp;
+
+	if(root->value > data)
+		root->left = Delete_Number(root->left,data);
+	else if(root->value < data)
+		root->right = Delete_Number(root->right,data);
+	else
+	{
+		if(root->left != NULL && root->right != NULL)
+		{
+			temp = Search_Min_Number(root->right);
+			root->value = temp->value;
+			root->right = Delete_Number(root->right,root->value);
+		}
+		else
+		{
+			temp = root;
+			
+			if(root->left != NULL && root->right == NULL)
+				root = root->left;
+			else if(root->left == NULL && root->right != NULL)
+				root = root->right;
+			else
+				root = NULL;
+		}
+	}
+	
+	root = Balance_Out(root);
+
+	return root;
 }
 
 Node* Balance_Out(Node* root)
@@ -69,7 +113,6 @@ Node* Balance_Out(Node* root)
 		//if "check_Balance" value is positive number, tree tilted to the left
 		//if "check_Balance" value is negative number, tree tilted to the right
 		//if "check_Balance" value is greater than or equal to the absolute value of 2, it is unbalanced
-	
 	if(check_Balance > 1)
 	{
 		if(Find_Balance(root->left) > 0)
@@ -84,7 +127,7 @@ Node* Balance_Out(Node* root)
 		else
 			root = RL(root);
 	}
-
+	
 	return root;
 }
 
@@ -275,7 +318,7 @@ int main()
 				printf("Are you sure you want to INITIALIZE AVL TREE?\n");
 				printf("\tPlease answer y/n\n");
 	
-				scanf("%c",&answer);
+				scanf(" %c",&answer);
 				getchar();
 				
 				if(answer == 'y' || answer == 'Y')
@@ -299,7 +342,7 @@ int main()
 			{
 				printf("Are you sure you want to EIXT PROGRAM?\n");
 				printf("\tPlease answer y/n\n");
-				scanf("%c",&answer);
+				scanf(" %c",&answer);
 				getchar();
 
 				if(answer == 'y' || answer == 'Y' || answer == 'n' || answer == 'N')
