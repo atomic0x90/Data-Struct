@@ -1,53 +1,37 @@
-# Project title / 프로젝트 제목
+## Data Struct, Algorithm
 
-Data-Struct / 자료구조
+제가 공부했던 것들을 개인적으로 저장하기 위해 이 repository를 만들었습니다.
 
-# Data-Struct / 자료구조
 
-## Data-Struct / 자료구조
+## Development Environment
 
-### Data-Struct / 자료구조
+1. OS : Linux / Ubuntu 18.04.2 LTS
+1. TEXT EDITOR
+  * vim : version 8.0.1453
+1. COMPILER
+  * gcc : version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04)
+  * g++ : version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04)
 
-#### Data-Struct / 자료구조
 
-##### Data-Struct / 자료구조
+## installation method
 
-###### Data-Struct / 자료구조
+Linux
+```bash
+sudo apt-get install vim
 
-####### Data-Struct / 자료구조
+sudo apt-get install gcc
 
-*test
-
-*test*
-
-**test**
-
-***test***
-
-~test~
-
-~~test~~
-
-```c
-#include <stdio.h>
-int main(void)
-{
-printf("Hello Interface!\n");
-return 0;
-}
+sudo apt-get install g++
 ```
 
-<test
 
->test
 
->test
 
-<test
+## Information
 
-* test
-1. test
-2.test
+e-mail address : hanyujun.study@gmail.com
 
-1.test
-2.test
+
+
+
+
