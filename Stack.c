@@ -1,15 +1,55 @@
 #include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node
+{
+	int value;
+	struct Node *link;
+}Node;
 
 typedef struct Stack
 {
-	int value;
-	struct Stack *link;
+	Node *top;
 }Stack;
 
+Stack* Create_Stack()
+{
+	Stack* stack;
+	stack = (Stack*)malloc(sizeof(Stack));
+	stack->top = NULL;
+	return stack;
+}
+void Push_Stack(Stack *s,int data)
+{
+	Node *push_node = (Node*)malloc(sizeof(Node));
+
+	push_node->value = data;
+	push_node->link = s->top;
+	s->top = push_node;
+}
+/*
+void Print_Stack(Stack *s)
+{
+	if(s->top == NULL)
+		return;
+
+	Stack *temp = s->top;
+	while(1)
+	{
+		printf("%d\n",temp->top->value);
+		if(temp->top->link == NULL)
+			break;
+		temp->top = temp->top->link;
+	}
+}
+*/
 int main()
 {
 	int num1,num2;
 	char answer;
+
+	Stack *stack;
+	stack = Create_Stack();
 	while(1)
 	{
 		printf("-------------------------------------------------------------\n");
@@ -43,7 +83,8 @@ int main()
 				else
 					break;
 			}
-
+			
+			Push_Stack(stack,num2);
 			printf("Successfully Push ! ! !\n");
 		}
 		else if(num1 == 2)	//Pop Number
@@ -67,7 +108,7 @@ int main()
 		else if(num1 == 4)	//Print Stack
 		{
 			printf("Print Stack----\n");
-
+//			Print_Stack(stack);
 			printf("\n---------------\n\n");
 		}
 		else if(num1 == 5)	//Stack Initialization
@@ -99,7 +140,7 @@ int main()
 		{
 			for(;;)
 			{
-				printf("Are you sure you want to EIXT PROGRAM?\N");
+				printf("Are you sure you want to EIXT PROGRAM?\n");
 				printf("\tPlease answer y/n\n");
 				
 				scanf("%c",&answer);
@@ -127,6 +168,7 @@ int main()
 			printf("\tPlease enter a number in the range (0 ~ 5)\n");
 			printf("---------------------------------------------------------\n");
 		}
+
 	}
 	return 0;
 }
