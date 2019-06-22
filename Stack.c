@@ -28,11 +28,28 @@ void Push_Stack(Stack *s,int data)
 	s->top = push_node;
 }
 
+int Pop_Stack(Stack *s)
+{
+	int pop_data;
+
+	if(s->top == NULL)
+		return 0;
+	Node* pop_node = s->top;
+	
+	pop_data = pop_node->value;
+	s->top = pop_node->link;
+	free(pop_node);
+
+	return pop_data;
+}
+
 void Print_Stack(Stack *s)
 {
 	if(s->top == NULL)
+	{
+		printf("\n");
 		return;
-
+	}
 	Node *temp = s->top;
 	while(1)
 	{
@@ -89,12 +106,17 @@ int main()
 		}
 		else if(num1 == 2)	//Pop Number
 		{
-			printf("\nPlease enter a number to pop the Stack\n");
 
-			scanf("%d",&num2);
-			getchar();
-
-			printf("Successfully pop ! ! !\n");
+			int check_NULL = Pop_Stack(stack);
+			if(check_NULL != 0)
+			{
+				printf("Successfully pop ! ! !\n");
+				printf("Pop result : %d\n",check_NULL);
+			}
+			else
+			{
+				printf("Stack is NULL...(Not POP)\n");
+			}
 		}
 		else if(num1 == 3)	//Search Number
 		{
@@ -107,9 +129,9 @@ int main()
 		}
 		else if(num1 == 4)	//Print Stack
 		{
-			printf("Print Stack----\n");
+			printf("\nPrint Stack----\ntop\n");
 			Print_Stack(stack);
-			printf("\n---------------\n\n");
+			printf("bottom\n---------------\n\n");
 		}
 		else if(num1 == 5)	//Stack Initialization
 		{
