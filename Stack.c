@@ -43,6 +43,27 @@ int Pop_Stack(Stack *s)
 	return pop_data;
 }
 
+int Search_Number(Stack *s,int data)
+{
+	if(s->top == NULL)
+		return 0;
+
+	Node* search_node = s->top;
+
+	while(1)
+	{
+		if(search_node->value != data)
+		{
+			if(search_node -> link == NULL)
+				return 0;
+			else
+				search_node = search_node->link;
+		}
+		else if(search_node->value == data)
+			return search_node->value;
+	}
+}
+
 void Print_Stack(Stack *s)
 {
 	if(s->top == NULL)
@@ -114,9 +135,7 @@ int main()
 				printf("Pop result : %d\n",check_NULL);
 			}
 			else
-			{
 				printf("Stack is NULL...(Not POP)\n");
-			}
 		}
 		else if(num1 == 3)	//Search Number
 		{
@@ -125,6 +144,13 @@ int main()
 			scanf("%d",&num2);
 			getchar();
 
+			int check_search;
+			check_search = Search_Number(stack,num2);
+
+			if(check_search != 0)
+				printf("Successfully searched! (search number = %d)\n",check_search);
+			else
+				printf("This number does not exist Stack...\n");
 
 		}
 		else if(num1 == 4)	//Print Stack
