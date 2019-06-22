@@ -27,22 +27,22 @@ void Push_Stack(Stack *s,int data)
 	push_node->link = s->top;
 	s->top = push_node;
 }
-/*
+
 void Print_Stack(Stack *s)
 {
 	if(s->top == NULL)
 		return;
 
-	Stack *temp = s->top;
+	Node *temp = s->top;
 	while(1)
 	{
-		printf("%d\n",temp->top->value);
-		if(temp->top->link == NULL)
+		printf("%d\n",temp->value);
+		if(temp->link == NULL)
 			break;
-		temp->top = temp->top->link;
+		temp = temp->link;
 	}
 }
-*/
+
 int main()
 {
 	int num1,num2;
@@ -108,7 +108,7 @@ int main()
 		else if(num1 == 4)	//Print Stack
 		{
 			printf("Print Stack----\n");
-//			Print_Stack(stack);
+			Print_Stack(stack);
 			printf("\n---------------\n\n");
 		}
 		else if(num1 == 5)	//Stack Initialization
