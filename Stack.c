@@ -81,6 +81,11 @@ void Print_Stack(Stack *s)
 	}
 }
 
+void Initialization_Stack(Stack *s)
+{
+	s->top = NULL;
+}
+
 int main()
 {
 	int num1,num2;
@@ -171,7 +176,7 @@ int main()
 
 				if(answer == 'y' || answer == 'Y')
 				{
-
+					Initialization_Stack(stack);
 					printf("Successfully initialized Stack!\n");
 					break;
 				}
