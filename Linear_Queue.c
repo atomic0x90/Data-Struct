@@ -44,8 +44,42 @@ void Push_Queue(Queue *q,int data)
 	return;
 }
 
-int Pop_Queue(Queue *s)
+int Pop_Queue(Queue *q)
 {
+	if(q->front == NULL)
+		return 0;
+	
+	int pop_data;
+
+	Node *pop_node = q->front;
+
+	if(q->front == q->rear)
+	{
+		pop_data = q->front->value;
+	
+		q->front = NULL;
+		q->rear = NULL;
+	
+		free(pop_node);
+	
+		return pop_data;
+	}
+	else
+	{
+		while(pop_node->link != q->rear)
+			pop_node = pop_node->link;
+
+		q->rear = pop_node;
+		pop_node = pop_node->link;
+
+		pop_data = pop_node->value;
+
+		q->rear->link = NULL;
+
+		free(pop_node);
+
+		return pop_data;
+	}
 }
 
 int Search_Number(Queue *q,int data)
