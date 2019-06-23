@@ -9,16 +9,39 @@ typedef struct Node
 
 typedef struct Queue
 {
+	Node *front;
+	Node *rear;
 }Queue;
 
 Queue* Create_Queue()
 {
 	Queue* queue;
 	queue = (Queue*)malloc(sizeof(Queue));
+	queue->front = NULL;
+	queue->rear = NULL;
+	
 	return queue;
 }
-void Push_Queue(Queue *s,int data)
+
+void Push_Queue(Queue *q,int data)
 {
+	Node *push_node = (Node*)malloc(sizeof(Node));
+
+	push_node->value = data;
+	push_node->link = NULL;
+
+	if(q->front == NULL)
+	{
+		q->front = push_node;
+		q->rear = push_node;
+	}
+	else
+	{
+		push_node->link = q->front;
+		q->front = push_node;
+	}
+
+	return;
 }
 
 int Pop_Queue(Queue *s)
@@ -29,8 +52,21 @@ int Search_Number(Queue *s,int data)
 {
 }
 
-void Print_Queue(Queue *s)
+void Print_Queue(Queue *q)
 {
+	if(q->front == NULL)
+		return;
+
+	Node *temp = q->front;
+
+	while(1)
+	{
+		printf("%d ",temp->value);
+		
+		if(temp->link == NULL)
+			break;
+		temp = temp->link;
+	}
 }
 
 void Initialization_Queue(Queue *s)
@@ -122,7 +158,7 @@ void print_screen(Queue *s)
 {
 	printf("\nPrint Queue---------------\n");
 	Print_Queue(s);
-	printf("front<--------------->rear\n\n");
+	printf("\nfront<--------------->rear\n\n");
 
 	return;
 }
