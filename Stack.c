@@ -122,7 +122,7 @@ int main()
 				getchar();
 
 				if(num2 < 1)
-					printf("Pleae check the range of numbers ! ! !\n\n");
+					printf("Please check the range of numbers ! ! !\n\n");
 				else
 					break;
 			}
