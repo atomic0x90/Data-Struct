@@ -48,8 +48,25 @@ int Pop_Queue(Queue *s)
 {
 }
 
-int Search_Number(Queue *s,int data)
+int Search_Number(Queue *q,int data)
 {
+	if(q->front == NULL)
+		return 0;
+
+	Node *temp = q->front;
+
+	while(1)
+	{
+		if(temp->value != data)
+		{
+			if(temp->link == NULL)
+				return 0;
+			else
+				temp = temp->link;
+		}
+		else if(temp->value == data)
+			return temp->value;
+	}
 }
 
 void Print_Queue(Queue *q)
@@ -67,10 +84,16 @@ void Print_Queue(Queue *q)
 			break;
 		temp = temp->link;
 	}
+
+	return;
 }
 
-void Initialization_Queue(Queue *s)
+void Initialization_Queue(Queue *q)
 {
+	q->front = NULL;
+	q->rear = NULL;
+
+	return;
 }
 
 int menu_screen()
