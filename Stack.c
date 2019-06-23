@@ -116,7 +116,7 @@ int main()
 			for(;;)
 			{
 				printf("\nPlease enter a number to push into the Stack\n");
-				printf("The range of numbers is a positibe integer\n");
+				printf("The range of numbers is a positive integer\n");
 			
 				scanf("%d",&num2);
 				getchar();
