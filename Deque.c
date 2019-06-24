@@ -24,6 +24,7 @@ Deque* Create_Deque()
 
 	return deque;
 }
+
 void Push_Front_Deque(Deque *q,int data)
 {
 	Node* push_node = (Node*)malloc(sizeof(Node));
@@ -47,6 +48,7 @@ void Push_Front_Deque(Deque *q,int data)
 		return;
 	}
 }
+
 void Push_Rear_Deque(Deque *q,int data)
 {
 	Node* push_node = (Node*)malloc(sizeof(Node));
@@ -70,11 +72,57 @@ void Push_Rear_Deque(Deque *q,int data)
 		return;
 	}
 }
+
 int Pop_Front_Deque(Deque *q)
 {
+	if(q->front == NULL)
+		return 0;
+	
+	int pop_data;
+
+	Node* temp = q->front;
+	pop_data = temp->value;
+
+	if(q->front == q->rear)
+	{
+		q->front = NULL;
+		q->rear = NULL;
+	}
+	else
+	{
+		q->front = temp->next;
+		q->front->previous = NULL;
+	}
+
+	free(temp);
+
+	return pop_data;
 }
+
 int Pop_Rear_Deque(Deque *q)
 {
+	if(q->rear == NULL)
+		return 0;
+
+	int pop_data;
+
+	Node* temp = q->rear;
+	pop_data = temp->value;
+
+	if(q->front == q->rear)
+	{
+		q->front = NULL;
+		q->rear = NULL;
+	}
+	else
+	{
+		q->rear = temp->previous;
+		q->rear->next = NULL;
+	}
+
+	free(temp);
+
+	return pop_data;
 }
 
 int Search_Number(Deque *q,int data)
@@ -315,19 +363,19 @@ int main()
 		else if(num == 2)	//Pop Number(front)
 			pop_front_screen(deque);
 
-		else if(num == 3)
+		else if(num == 3)	//Push Number(rear)
 			push_rear_screen(deque);
 
-		else if(num == 4)
+		else if(num == 4)	//Pop Number(rear)
 			pop_rear_screen(deque);
 
 		else if(num == 5)	//Search Number
 			search_screen(deque);
 
-		else if(num == 6)	//Print Queue
+		else if(num == 6)	//Print Deque
 			print_screen(deque);
 
-		else if(num == 7)	//Queue Initialization
+		else if(num == 7)	//Deque Initialization
 			initialization_screen(deque);
 
 		else if(num == 0)	//Exit Program
