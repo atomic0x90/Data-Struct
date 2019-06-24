@@ -153,7 +153,7 @@ int menu_screen()
 	return num;
 }
 
-void push_screen(Queue *s)
+void push_screen(Queue *q)
 {
 	int num;
 
@@ -171,15 +171,15 @@ void push_screen(Queue *s)
 			break;
 	}
 
-	Push_Queue(s,num);
+	Push_Queue(q,num);
 	printf("Successfully Push ! ! !\n");
 
 	return;
 }
 
-void pop_screen(Queue *s)
+void pop_screen(Queue *q)
 {
-	int check_NULL = Pop_Queue(s);
+	int check_NULL = Pop_Queue(q);
 	
 	if(check_NULL != 0)
 	{
@@ -192,7 +192,7 @@ void pop_screen(Queue *s)
 	return;
 }
 
-void search_screen(Queue *s)
+void search_screen(Queue *q)
 {
 	int num,check_search;
 
@@ -201,7 +201,7 @@ void search_screen(Queue *s)
 	scanf("%d",&num);
 	getchar();
 
-	check_search = Search_Number(s,num);
+	check_search = Search_Number(q,num);
 
 	if(check_search != 0)
 		printf("Successfully searched! (search number = %d)\n",check_search);
@@ -211,16 +211,16 @@ void search_screen(Queue *s)
 	return;
 }
 
-void print_screen(Queue *s)
+void print_screen(Queue *q)
 {
 	printf("\nPrint Queue---------------\n");
-	Print_Queue(s);
+	Print_Queue(q);
 	printf("\nfront<--------------->rear\n\n");
 
 	return;
 }
 
-void initialization_screen(Queue *s)
+void initialization_screen(Queue *q)
 {
 	char answer;
 	for(;;)
@@ -233,7 +233,7 @@ void initialization_screen(Queue *s)
 
 		if(answer == 'y' || answer == 'Y')
 		{
-			Initialization_Queue(s);
+			Initialization_Queue(q);
 			printf("Successfully initialized Queue!\n");
 			break;
 		}
