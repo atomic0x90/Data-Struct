@@ -127,6 +127,23 @@ int Pop_Rear_Deque(Deque *q)
 
 int Search_Number(Deque *q,int data)
 {
+	if(q->front == NULL)
+		return 0;
+
+	Node* temp = q->front;
+
+	while(1)
+	{
+		if(temp->value != data)
+		{
+			if(temp->next == NULL)
+				return 0;
+
+			temp = temp->next;
+		}
+		else
+			return temp->value;
+	}
 }
 
 void Print_Deque(Deque *q)
@@ -147,6 +164,10 @@ void Print_Deque(Deque *q)
 
 void Initialization_Deque(Deque *q)
 {
+	q->front = NULL;
+	q->rear = NULL;
+	
+	return;
 }
 
 int menu_screen()
