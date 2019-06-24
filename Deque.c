@@ -3,20 +3,72 @@
 
 typedef struct Node
 {
+	int value;
+	struct Node* previous;
+	struct Node* next;
 }Node;
 
 typedef struct Deque
 {
+	Node* front;
+	Node* rear;
 }Deque;
 
 Deque* Create_Deque()
 {
+	Deque* deque;
+
+	deque = (Deque*)malloc(sizeof(Deque));
+	deque->front = NULL;
+	deque->rear = NULL;
+
+	return deque;
 }
 void Push_Front_Deque(Deque *q,int data)
 {
+	Node* push_node = (Node*)malloc(sizeof(Node));
+	push_node->previous = NULL;
+	push_node->next = NULL;
+	push_node->value = data;
+
+	if(q->front == NULL)
+	{
+		q->front = push_node;
+		q->rear = push_node;
+
+		return;
+	}
+	else
+	{
+		push_node->next = q->front;
+		q->front->previous = push_node;
+		q->front = push_node;
+
+		return;
+	}
 }
 void Push_Rear_Deque(Deque *q,int data)
 {
+	Node* push_node = (Node*)malloc(sizeof(Node));
+	push_node->previous = NULL;
+	push_node->next = NULL;
+	push_node->value = data;
+
+	if(q->rear == NULL)
+	{
+		q->front = push_node;
+		q->rear = push_node;
+
+		return;
+	}
+	else
+	{
+		push_node->previous = q->rear;
+		q->rear->next = push_node;
+		q->rear = push_node;
+
+		return;
+	}
 }
 int Pop_Front_Deque(Deque *q)
 {
@@ -31,6 +83,18 @@ int Search_Number(Deque *q,int data)
 
 void Print_Deque(Deque *q)
 {
+	if(q->front == NULL)
+		return;
+
+	Node* temp = q->front;
+
+	while(1)
+	{
+		printf("%d ",temp->value);
+		if(temp->next == NULL)
+			break;
+		temp = temp->next;
+	}
 }
 
 void Initialization_Deque(Deque *q)
