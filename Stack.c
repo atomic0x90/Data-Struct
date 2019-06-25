@@ -86,6 +86,18 @@ void Initialization_Stack(Stack *s)
 	s->top = NULL;
 }
 
+void Peek_Stack(Stack *s)
+{
+	if(s->top == NULL)
+	{
+		printf("Stack is NULL\n");
+		return;
+	}
+	printf("Stack top data -> %d\n",s->top->value);
+
+	return;
+}
+
 int main()
 {
 	int num1,num2;
@@ -105,7 +117,8 @@ int main()
 		
 		printf("\t1.Push Number\t\t2.Pop Number\n");
 		printf("\t3.Search Number\t\t4.Print Stack\n");
-		printf("\t5.Stack Initialization\t0.Exit Program\n");
+		printf("\t5.Stack Initialization\t6.Peek Stack\n");
+		printf("\t0.Exit Program\n");
 		printf("-------------------------------------------------------------\n");
 
 		scanf("%d",&num1);
@@ -189,6 +202,10 @@ int main()
 					printf("Please enter y or n\n\n");
 			}
 		}
+		else if(num1 == 6)	//Peek Stack
+		{
+			Peek_Stack(stack);
+		}
 		else if(num1 == 0)	//Exit Program
 		{
 			for(;;)
@@ -218,7 +235,7 @@ int main()
 		{
 			printf("---------------------------------------------------------\n");
 			printf("\tPlease enter a number (non-character)\n");
-			printf("\tPlease enter a number in the range (0 ~ 5)\n");
+			printf("\tPlease enter a number in the range (0 ~ 6)\n");
 			printf("---------------------------------------------------------\n");
 		}
 
