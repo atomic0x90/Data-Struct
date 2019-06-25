@@ -170,6 +170,26 @@ void Initialization_Deque(Deque *q)
 	return;
 }
 
+void Peek_Front_Deque(Deque *q)
+{
+	if(q->front == NULL)
+		printf("Deque is NULL\n");
+	else
+		printf("Deque Front data -> %d\n",q->front->value);
+
+	return;
+}
+
+void Peek_Rear_Deque(Deque *q)
+{
+	if(q->rear == NULL)
+		printf("Deque is NULL\n");
+	else
+		printf("Deque Rear data -> %d\n",q->rear->value);
+
+	return;
+}
+
 int menu_screen()
 {
 	int num;
@@ -185,7 +205,8 @@ int menu_screen()
 	printf("\t1.Push Number(front)\t2.Pop Number(front)\n");
 	printf("\t3.Push Number(rear)\t4.Pop Number(rear)\n");
 	printf("\t5.Search Number\t\t6.Print Deque\n");
-	printf("\t7.Deque Initialization\t0.Exit Program\n");
+	printf("\t7.Deque Initialization\t8.Peek Front Deque\n");
+	printf("\t9.Peek Rear Deque\t0.Exit Program\n");
 	printf("-------------------------------------------------------------\n");
 
 	scanf("%d",&num);
@@ -329,6 +350,20 @@ void initialization_screen(Deque *q)
 	return;
 }
 
+void peek_front_screen(Deque *q)
+{
+	Peek_Front_Deque(q);
+
+	return;
+}
+
+void peek_rear_screen(Deque *q)
+{
+	Peek_Rear_Deque(q);
+
+	return;
+}
+
 char exit_screen()
 {
 	char answer;
@@ -398,6 +433,12 @@ int main()
 
 		else if(num == 7)	//Deque Initialization
 			initialization_screen(deque);
+		
+		else if(num == 8)	//Peek Front
+			peek_front_screen(deque);
+
+		else if(num == 9)	//Peek Rear
+			peek_rear_screen(deque);
 
 		else if(num == 0)	//Exit Program
 		{
