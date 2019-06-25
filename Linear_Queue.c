@@ -130,6 +130,26 @@ void Initialization_Queue(Queue *q)
 	return;
 }
 
+void Peek_Front_Queue(Queue *q)
+{
+	if(q->front == NULL)
+		printf("Queue is NULL\n");
+	else
+		printf("Queue Front data -> %d\n",q->front->value);
+	
+	return;
+}
+
+void Peek_Rear_Queue(Queue *q)
+{
+	if(q->rear == NULL)
+		printf("Queue is NULL\n");
+	else
+		printf("Queue Rear data -> %d\n",q->rear->value);
+
+	return;
+}
+
 int menu_screen()
 {
 	int num;
@@ -144,7 +164,8 @@ int menu_screen()
 
 	printf("\t1.Push Number\t\t2.Pop Number\n");
 	printf("\t3.Search Number\t\t4.Print Queue\n");
-	printf("\t5.Queue Initialization\t0.Exit Program\n");
+	printf("\t5.Queue Initialization\t6.Peek Front Queue\n");
+	printf("\t7.Peek Rear Queue\t0.Exit Program\n");
 	printf("-------------------------------------------------------------\n");
 
 	scanf("%d",&num);
@@ -249,6 +270,20 @@ void initialization_screen(Queue *q)
 	return;
 }
 
+void peek_front_screen(Queue *q)
+{
+	Peek_Front_Queue(q);
+
+	return;
+}
+
+void peek_rear_screen(Queue *q)
+{
+	Peek_Rear_Queue(q);
+
+	return;
+}
+
 char exit_screen()
 {
 	char answer;
@@ -281,7 +316,7 @@ void error_screen()
 {
 	printf("---------------------------------------------------------\n");
 	printf("\tPlease enter a number (non-character)\n");
-	printf("\tPlease enter a number in the range (0 ~ 5)\n");
+	printf("\tPlease enter a number in the range (0 ~ 7)\n");
 	printf("---------------------------------------------------------\n");
 	
 	return;
@@ -312,6 +347,12 @@ int main()
 
 		else if(num == 5)	//Queue Initialization
 			initialization_screen(queue);
+
+		else if(num == 6)	//Peek front Queue
+			peek_front_screen(queue);
+
+		else if(num == 7)	//Peek rear Queue
+			peek_rear_screen(queue);
 
 		else if(num == 0)	//Exit Program
 		{
