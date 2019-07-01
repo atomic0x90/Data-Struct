@@ -1,6 +1,31 @@
 #include <stdio.h>
-#include <stdlib.h>
 
+int *stack,check_size,top;
+
+void stack_size_setting()
+{
+	for(;;)
+	{
+		printf("-------------------------------------------------------------\n");
+		printf("\t    Please enter the size of the Stack\n");
+		printf("\tThe range of numbers is a positive integer\n");
+		printf("-------------------------------------------------------------\n");
+
+		scanf("%d",&check_size);
+		getchar();
+
+		if(check_size < 1)
+			printf("Please check the range of numbers ! ! !\n\n");
+		else
+			break;
+
+	}
+
+	stack[check_size];
+	printf("Successfully Stack size setting ! ! !\n");
+
+	return;
+}
 
 void Push_Stack(int data)
 {
@@ -40,7 +65,7 @@ int menu_screen()
 	printf("\t1.Push Number\t\t2.Pop Number\n");
 	printf("\t3.Search Number\t\t4.Print Stack\n");
 	printf("\t5.Stack Initialization\t6.Peek Stack\n");
-	printf("\t0.Exit Program\n");
+	printf("\t7.Reset Stack Size\t0.Exit Program\n");
 	printf("-------------------------------------------------------------\n");
 
 	scanf("%d",&num);
@@ -185,7 +210,7 @@ void error_screen()
 {
 	printf("---------------------------------------------------------\n");
 	printf("\tPlease enter a number (non-character)\n");
-	printf("\tPlease enter a number in the range (0 ~ 6)\n");
+	printf("\tPlease enter a number in the range (0 ~ 7)\n");
 	printf("---------------------------------------------------------\n");
 	
 	return;
@@ -195,6 +220,8 @@ int main()
 {
 	int num;
 	char answer;
+
+	stack_size_setting();
 
 	while(1)
 	{
@@ -217,6 +244,9 @@ int main()
 
 		else if(num == 6)	//Peek Stack
 			peek_screen();
+
+		else if(num == 7)	//Reset Stack Size
+			stack_size_setting();
 
 		else if(num == 0)	//Exit Program
 		{
