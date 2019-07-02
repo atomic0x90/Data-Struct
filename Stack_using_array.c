@@ -21,7 +21,9 @@ void stack_size_setting()
 
 	}
 
-	stack[check_size];
+	int stack[check_size];
+	top = 0;
+
 	printf("Successfully Stack size setting ! ! !\n");
 
 	return;
@@ -29,6 +31,16 @@ void stack_size_setting()
 
 void Push_Stack(int data)
 {
+	if(top == check_size)
+		printf("Stack is PULL !\n(Not Push)\n");
+	else
+	{
+		stack[top] = data;
+		top++;
+		printf("Successfully Push !\n");
+	}
+
+	return;
 }
 
 int Pop_Stack()
@@ -40,6 +52,11 @@ int Search_Number(int data)
 }
 void Print_Stack()
 {
+	for(int i = top;i >= 0;i--)
+	{
+		printf("%d\n",stack[i]);
+	}
+	return;
 }
 
 void Initialization_Stack()
@@ -93,7 +110,6 @@ void push_screen()
 	}
 
 	Push_Stack(num);
-	printf("Successfully Push ! ! !\n");
 
 	return;
 }
@@ -146,7 +162,7 @@ void initialization_screen()
 	char answer;
 	for(;;)
 	{
-		printf("Are you sure you want to INITIALIZATION QUEUE?\n");
+		printf("Are you sure you want to INITIALIZATION STACK?\n");
 		printf("\tPlease answer y/n\n");
 
 		scanf("%c",&answer);
@@ -155,12 +171,12 @@ void initialization_screen()
 		if(answer == 'y' || answer == 'Y')
 		{
 			Initialization_Stack();
-			printf("Successfully initialized Queue!\n");
+			printf("Successfully initialized Stack!\n");
 			break;
 		}
 		else if(answer == 'n' || answer == 'N')
 		{
-			printf("Not initialized Queue\n");
+			printf("Not initialized Stack\n");
 			break;
 		}
 		else
@@ -177,6 +193,36 @@ void peek_screen()
 	return;
 }
 
+void stack_size_screen()
+{
+	char answer;
+
+	for(;;)
+	{
+		printf("Resetting the stack size will initialize the stack. Shall we do it?\n");
+		printf("\tPlease answer y/n\n");
+
+		scanf("%c",&answer);
+		getchar();
+
+		if(answer == 'y' || answer == 'Y' || answer == 'n' || answer == 'N')
+			break;
+		else
+			printf("Please enter y or n\n\n");
+	}
+
+	if(answer == 'y' || answer == 'Y')
+	{
+		stack_size_setting();
+		printf("Successfully Stack size reset ! ! !\n");
+	}
+
+	else
+		printf("Not reset Stack size\n");
+
+
+	return;
+}
 
 char exit_screen()
 {
@@ -246,7 +292,7 @@ int main()
 			peek_screen();
 
 		else if(num == 7)	//Reset Stack Size
-			stack_size_setting();
+			stack_size_screen();
 
 		else if(num == 0)	//Exit Program
 		{
