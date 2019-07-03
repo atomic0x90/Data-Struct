@@ -1,8 +1,9 @@
 #include <stdio.h>
 
-int *stack,check_size,top;
 
-void stack_size_setting()
+int check_size,top;
+
+int stack_size_setting()
 {
 	for(;;)
 	{
@@ -20,16 +21,14 @@ void stack_size_setting()
 			break;
 
 	}
-
-	int stack[check_size];
 	top = 0;
 
 	printf("Successfully Stack size setting ! ! !\n");
 
-	return;
+	return check_size;
 }
 
-void Push_Stack(int data)
+void Push_Stack(int *stack,int data)
 {
 	if(top == check_size)
 		printf("Stack is PULL !\n(Not Push)\n");
@@ -50,12 +49,15 @@ int Pop_Stack()
 int Search_Number(int data)
 {
 }
-void Print_Stack()
+void Print_Stack(int *stack)
 {
-	for(int i = top;i >= 0;i--)
+	if(top != 0)
 	{
-		printf("%d\n",stack[i]);
+		for(int i = top-1;i >= 0;i--)
+			printf("%d\n",stack[i]);
 	}
+	else
+		printf("Stack is NULL\n");
 	return;
 }
 
@@ -82,7 +84,7 @@ int menu_screen()
 	printf("\t1.Push Number\t\t2.Pop Number\n");
 	printf("\t3.Search Number\t\t4.Print Stack\n");
 	printf("\t5.Stack Initialization\t6.Peek Stack\n");
-	printf("\t7.Reset Stack Size\t0.Exit Program\n");
+	printf("\t0.Exit Program\n");
 	printf("-------------------------------------------------------------\n");
 
 	scanf("%d",&num);
@@ -91,7 +93,7 @@ int menu_screen()
 	return num;
 }
 
-void push_screen()
+void push_screen(int *stack)
 {
 	int num;
 
@@ -109,7 +111,7 @@ void push_screen()
 			break;
 	}
 
-	Push_Stack(num);
+	Push_Stack(stack,num);
 
 	return;
 }
@@ -148,10 +150,10 @@ void search_screen()
 	return;
 }
 
-void print_screen()
+void print_screen(int *stack)
 {
-	printf("\nPrint Stack---------------\ntop\n");
-	Print_Stack();
+	printf("\nPrint Stack----\ntop\n\n");
+	Print_Stack(stack);
 	printf("\nbottom\n---------------\n\n");
 
 	return;
@@ -193,36 +195,6 @@ void peek_screen()
 	return;
 }
 
-void stack_size_screen()
-{
-	char answer;
-
-	for(;;)
-	{
-		printf("Resetting the stack size will initialize the stack. Shall we do it?\n");
-		printf("\tPlease answer y/n\n");
-
-		scanf("%c",&answer);
-		getchar();
-
-		if(answer == 'y' || answer == 'Y' || answer == 'n' || answer == 'N')
-			break;
-		else
-			printf("Please enter y or n\n\n");
-	}
-
-	if(answer == 'y' || answer == 'Y')
-	{
-		stack_size_setting();
-		printf("Successfully Stack size reset ! ! !\n");
-	}
-
-	else
-		printf("Not reset Stack size\n");
-
-
-	return;
-}
 
 char exit_screen()
 {
@@ -256,7 +228,7 @@ void error_screen()
 {
 	printf("---------------------------------------------------------\n");
 	printf("\tPlease enter a number (non-character)\n");
-	printf("\tPlease enter a number in the range (0 ~ 7)\n");
+	printf("\tPlease enter a number in the range (0 ~ 6)\n");
 	printf("---------------------------------------------------------\n");
 	
 	return;
@@ -267,14 +239,15 @@ int main()
 	int num;
 	char answer;
 
-	stack_size_setting();
+	num = stack_size_setting();
+	int stack[num];
 
 	while(1)
 	{
 		num = menu_screen();
 		
 		if(num == 1)	//Push Number
-			push_screen();
+			push_screen(stack);
 
 		else if(num == 2)	//Pop Number
 			pop_screen();
@@ -283,16 +256,13 @@ int main()
 			search_screen();
 
 		else if(num == 4)	//Print Stack
-			print_screen();
+			print_screen(stack);
 
 		else if(num == 5)	//Stack Initialization
 			initialization_screen();
 
 		else if(num == 6)	//Peek Stack
 			peek_screen();
-
-		else if(num == 7)	//Reset Stack Size
-			stack_size_screen();
 
 		else if(num == 0)	//Exit Program
 		{
