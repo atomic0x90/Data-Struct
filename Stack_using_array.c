@@ -55,8 +55,20 @@ int Pop_Stack(int *stack)
 	}
 }
 
-int Search_Number(int data)
+int Search_Number(int *stack,int data)
 {
+	if(top == 0)
+		return 0;
+	else
+	{
+		for(int i=0;i<top;i++)
+		{
+			if(stack[i] == data)
+				return stack[i];
+		}
+	}
+
+	return 0;
 }
 void Print_Stack(int *stack)
 {
@@ -140,7 +152,7 @@ void pop_screen(int *stack)
 	return;
 }
 
-void search_screen()
+void search_screen(int *stack)
 {
 	int num,check_search;
 
@@ -149,7 +161,7 @@ void search_screen()
 	scanf("%d",&num);
 	getchar();
 
-	check_search = Search_Number(num);
+	check_search = Search_Number(stack,num);
 
 	if(check_search != 0)
 		printf("Successfully searched! (search number = %d)\n",check_search);
@@ -262,7 +274,7 @@ int main()
 			pop_screen(stack);
 
 		else if(num == 3)	//Search Number
-			search_screen();
+			search_screen(stack);
 
 		else if(num == 4)	//Print Stack
 			print_screen(stack);
