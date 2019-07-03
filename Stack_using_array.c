@@ -42,8 +42,17 @@ void Push_Stack(int *stack,int data)
 	return;
 }
 
-int Pop_Stack()
+int Pop_Stack(int *stack)
 {
+	if(top == 0)
+		return 0;
+	else
+	{
+		int pop_data = stack[top-1];
+		top--;
+	
+		return pop_data;
+	}
 }
 
 int Search_Number(int data)
@@ -116,9 +125,9 @@ void push_screen(int *stack)
 	return;
 }
 
-void pop_screen()
+void pop_screen(int *stack)
 {
-	int check_NULL = Pop_Stack();
+	int check_NULL = Pop_Stack(stack);
 	
 	if(check_NULL != 0)
 	{
@@ -250,7 +259,7 @@ int main()
 			push_screen(stack);
 
 		else if(num == 2)	//Pop Number
-			pop_screen();
+			pop_screen(stack);
 
 		else if(num == 3)	//Search Number
 			search_screen();
