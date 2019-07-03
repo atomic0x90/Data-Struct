@@ -86,8 +86,15 @@ void Initialization_Stack()
 {
 }
 
-void Peek_Stack()
+void Peek_Stack(int *stack)
 {
+	if(top == 0)
+		printf("Stack is NULL\n");
+	
+	else
+		printf("top of Stack is %d\n",top);
+
+	return;
 }
 
 int menu_screen()
@@ -209,9 +216,9 @@ void initialization_screen()
 	return;
 }
 
-void peek_screen()
+void peek_screen(int *stack)
 {
-	Peek_Stack();
+	Peek_Stack(stack);
 
 	return;
 }
@@ -283,7 +290,7 @@ int main()
 			initialization_screen();
 
 		else if(num == 6)	//Peek Stack
-			peek_screen();
+			peek_screen(stack);
 
 		else if(num == 0)	//Exit Program
 		{
