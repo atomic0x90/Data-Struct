@@ -82,8 +82,14 @@ void Print_Stack(int *stack)
 	return;
 }
 
-void Initialization_Stack()
+void Initialization_Stack(int *stack)
 {
+	for(int i = 0;i<top;i++)
+		stack[i] = 0;
+
+	top = 0;
+
+	return;
 }
 
 void Peek_Stack(int *stack)
@@ -187,7 +193,7 @@ void print_screen(int *stack)
 	return;
 }
 
-void initialization_screen()
+void initialization_screen(int *stack)
 {
 	char answer;
 	for(;;)
@@ -200,7 +206,7 @@ void initialization_screen()
 
 		if(answer == 'y' || answer == 'Y')
 		{
-			Initialization_Stack();
+			Initialization_Stack(stack);
 			printf("Successfully initialized Stack!\n");
 			break;
 		}
@@ -287,7 +293,7 @@ int main()
 			print_screen(stack);
 
 		else if(num == 5)	//Stack Initialization
-			initialization_screen();
+			initialization_screen(stack);
 
 		else if(num == 6)	//Peek Stack
 			peek_screen(stack);
