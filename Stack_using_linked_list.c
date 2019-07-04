@@ -90,7 +90,7 @@ void Peek_Stack(Stack *s)
 {
 	if(s->top == NULL)
 	{
-		printf("Stack is NULL\n");
+		printf("Stack is empty\n");
 		return;
 	}
 	printf("Stack top data -> %d\n",s->top->value);
@@ -153,7 +153,7 @@ int main()
 				printf("Pop result : %d\n",check_NULL);
 			}
 			else
-				printf("Stack is NULL...(Not POP)\n");
+				printf("Stack is empty...(Not POP)\n");
 		}
 		else if(num1 == 3)	//Search Number
 		{
