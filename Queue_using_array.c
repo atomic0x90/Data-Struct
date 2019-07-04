@@ -61,8 +61,14 @@ void Print_Queue(int *q)
 	return;
 }
 
-void Initialization_Queue()
+void Initialization_Queue(int *q)
 {
+	for(int i = 0; i < rear ; i++)
+		q[i] = 0;
+	
+	front = rear = 0;
+
+	return;
 }
 
 int Peek_Front_Queue(int *q)
@@ -196,7 +202,7 @@ void print_screen(int *q)
 	return;
 }
 
-void initialization_screen()
+void initialization_screen(int *q)
 {
 	char answer;
 	for(;;)
@@ -209,7 +215,7 @@ void initialization_screen()
 
 		if(answer == 'y' || answer == 'Y')
 		{
-			Initialization_Queue();
+			Initialization_Queue(q);
 			printf("Successfully initialized Queue!\n");
 			break;
 		}
@@ -312,7 +318,7 @@ int main()
 			print_screen(queue);
 
 		else if(num == 5)	//Queue Initialization
-			initialization_screen();
+			initialization_screen(queue);
 
 		else if(num == 6)	//Peek front Queue
 			peek_front_screen(queue);
