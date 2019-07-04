@@ -78,7 +78,7 @@ void Print_Stack(int *stack)
 			printf("%d\n",stack[i]);
 	}
 	else
-		printf("Stack is NULL\n");
+		printf("Stack is empty\n");
 	return;
 }
 
@@ -95,7 +95,7 @@ void Initialization_Stack(int *stack)
 void Peek_Stack(int *stack)
 {
 	if(top == 0)
-		printf("Stack is NULL\n");
+		printf("Stack is empty\n");
 	
 	else
 		printf("top of Stack is %d\n",top);
@@ -160,7 +160,7 @@ void pop_screen(int *stack)
 		printf("Pop result : %d\n",check_NULL);
 	}
 	else
-		printf("Stack is NULL...(Not POP)\n");
+		printf("Stack is empty...(Not POP)\n");
 
 	return;
 }
