@@ -16,8 +16,23 @@ void Push_Queue(int *q,int data)
 	return;
 }
 
-int Pop_Queue()
+int Pop_Queue(int *q)
 {
+	int pop_data;
+
+	if(rear == front)
+		return 0;
+	else
+	{
+		pop_data = q[front];
+		rear--;
+
+		for(int i = 0; i < rear; i++)
+			q[i] = q[i+1];
+
+
+		return pop_data;
+	}
 }
 
 int Search_Number(int data)
@@ -119,9 +134,9 @@ void push_screen(int *q)
 	return;
 }
 
-void pop_screen()
+void pop_screen(int *q)
 {
-	int check_NULL = Pop_Queue();
+	int check_NULL = Pop_Queue(q);
 	
 	if(check_NULL != 0)
 	{
@@ -129,7 +144,7 @@ void pop_screen()
 		printf("Pop result : %d\n",check_NULL);
 	}
 	else
-		printf("Queue is NULL...(Not POP)\n");
+		printf("Queue is empty...(Not POP)\n");
 
 	return;
 }
@@ -259,7 +274,7 @@ int main()
 			push_screen(queue);
 
 		else if(num == 2)	//Pop Number
-			pop_screen();
+			pop_screen(queue);
 
 		else if(num == 3)	//Search Number
 			search_screen();
