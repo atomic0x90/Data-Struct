@@ -35,9 +35,19 @@ int Pop_Queue(int *q)
 	}
 }
 
-int Search_Number(int data)
+int Search_Number(int *q,int data)
 {
+	if(rear == front)
+		return 0;
+	for(int i = 0; i < rear; i++)
+	{
+		if(q[i] == data)
+			return q[i];
+	}
+
+	return 0;
 }
+
 void Print_Queue(int *q)
 {
 	if(rear == front)
@@ -149,7 +159,7 @@ void pop_screen(int *q)
 	return;
 }
 
-void search_screen()
+void search_screen(int *q)
 {
 	int num,check_search;
 
@@ -158,7 +168,7 @@ void search_screen()
 	scanf("%d",&num);
 	getchar();
 
-	check_search = Search_Number(num);
+	check_search = Search_Number(q,num);
 
 	if(check_search != 0)
 		printf("Successfully searched! (search number = %d)\n",check_search);
@@ -277,7 +287,7 @@ int main()
 			pop_screen(queue);
 
 		else if(num == 3)	//Search Number
-			search_screen();
+			search_screen(queue);
 
 		else if(num == 4)	//Print Queue
 			print_screen(queue);
