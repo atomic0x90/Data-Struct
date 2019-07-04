@@ -173,7 +173,7 @@ void Initialization_Deque(Deque *q)
 void Peek_Front_Deque(Deque *q)
 {
 	if(q->front == NULL)
-		printf("Deque is NULL\n");
+		printf("Deque is empty\n");
 	else
 		printf("Deque Front data -> %d\n",q->front->value);
 
@@ -183,7 +183,7 @@ void Peek_Front_Deque(Deque *q)
 void Peek_Rear_Deque(Deque *q)
 {
 	if(q->rear == NULL)
-		printf("Deque is NULL\n");
+		printf("Deque is empty\n");
 	else
 		printf("Deque Rear data -> %d\n",q->rear->value);
 
@@ -273,7 +273,7 @@ void pop_front_screen(Deque *q)
 		printf("Pop result : %d\n",check_NULL);
 	}
 	else
-		printf("Deqeue is NULL...(Not POP)\n");
+		printf("Deqeue is empty...(Not POP)\n");
 
 	return;
 }
@@ -288,7 +288,7 @@ void pop_rear_screen(Deque *q)
 		printf("Pop result : %d\n",check_NULL);
 	}
 	else
-		printf("Deque is NULL...(Not POP)\n");
+		printf("Deque is empty...(Not POP)\n");
 
 	return;
 }

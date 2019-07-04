@@ -133,7 +133,7 @@ void Initialization_Queue(Queue *q)
 void Peek_Front_Queue(Queue *q)
 {
 	if(q->front == NULL)
-		printf("Queue is NULL\n");
+		printf("Queue is empty\n");
 	else
 		printf("Queue Front data -> %d\n",q->front->value);
 	
@@ -143,7 +143,7 @@ void Peek_Front_Queue(Queue *q)
 void Peek_Rear_Queue(Queue *q)
 {
 	if(q->rear == NULL)
-		printf("Queue is NULL\n");
+		printf("Queue is empty\n");
 	else
 		printf("Queue Rear data -> %d\n",q->rear->value);
 
@@ -208,7 +208,7 @@ void pop_screen(Queue *q)
 		printf("Pop result : %d\n",check_NULL);
 	}
 	else
-		printf("Queue is NULL...(Not POP)\n");
+		printf("Queue is empty...(Not POP)\n");
 
 	return;
 }
