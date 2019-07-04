@@ -1,9 +1,19 @@
 #include <stdio.h>
-#include <stdlib.h>
 
+int front,rear,check_size;
 
-void Push_Queue(int data)
+void Push_Queue(int *q,int data)
 {
+	if(rear == check_size)
+		printf("Queue is PULL !\n(Not Push)\n");
+	else
+	{
+		q[rear] = data;
+		rear++;
+		printf("Successfully Push !\n");
+	}
+
+	return;
 }
 
 int Pop_Queue()
@@ -13,8 +23,17 @@ int Pop_Queue()
 int Search_Number(int data)
 {
 }
-void Print_Queue()
+void Print_Queue(int *q)
 {
+	if(rear == front)
+		printf("Queue is empty !");
+	else
+	{
+		for(int i = rear-1 ; i >= 0 ; i--)
+			printf("%d ",q[i]);
+	}
+
+	return;
 }
 
 void Initialization_Queue()
@@ -27,6 +46,30 @@ void Peek_Front_Queue()
 
 void Peek_Rear_Queue()
 {
+}
+
+int queue_size_setting()
+{
+	for(;;)
+	{
+		printf("-------------------------------------------------------------\n");
+		printf("\t    Please enter the size of the Queue\n");
+		printf("\tThe range of numbers is a positive integer\n");
+		printf("-------------------------------------------------------------\n");
+
+		scanf("%d",&check_size);
+		getchar();
+
+		if(check_size < 1)
+			printf("Please check the range of numbers ! ! !\n\n");
+		else
+			break;
+	}
+	front = rear = 0;
+
+	printf("Successfully Queue size setting ! ! !\n");
+
+	return check_size;
 }
 
 int menu_screen()
@@ -53,7 +96,7 @@ int menu_screen()
 	return num;
 }
 
-void push_screen()
+void push_screen(int *q)
 {
 	int num;
 
@@ -71,8 +114,7 @@ void push_screen()
 			break;
 	}
 
-	Push_Queue(num);
-	printf("Successfully Push ! ! !\n");
+	Push_Queue(q,num);
 
 	return;
 }
@@ -111,10 +153,10 @@ void search_screen()
 	return;
 }
 
-void print_screen()
+void print_screen(int *q)
 {
 	printf("\nPrint Queue---------------\n");
-	Print_Queue();
+	Print_Queue(q);
 	printf("\nfront<--------------->rear\n\n");
 
 	return;
@@ -206,12 +248,15 @@ int main()
 	int num;
 	char answer;
 
+	num = queue_size_setting();	//Queue size set
+	int queue[num];
+
 	while(1)
 	{
 		num = menu_screen();
 		
 		if(num == 1)	//Push Number
-			push_screen();
+			push_screen(queue);
 
 		else if(num == 2)	//Pop Number
 			pop_screen();
@@ -220,7 +265,7 @@ int main()
 			search_screen();
 
 		else if(num == 4)	//Print Queue
-			print_screen();
+			print_screen(queue);
 
 		else if(num == 5)	//Queue Initialization
 			initialization_screen();
