@@ -65,12 +65,21 @@ void Initialization_Queue()
 {
 }
 
-void Peek_Front_Queue()
+int Peek_Front_Queue(int *q)
 {
+	if(rear == front)
+		return 0;
+	else
+		return q[rear-1];
+
 }
 
-void Peek_Rear_Queue()
+int Peek_Rear_Queue(int *q)
 {
+	if(rear == front)
+		return 0;
+	else 
+		return q[0];
 }
 
 int queue_size_setting()
@@ -216,16 +225,26 @@ void initialization_screen()
 	return;
 }
 
-void peek_front_screen()
+void peek_front_screen(int *q)
 {
-	Peek_Front_Queue();
+	int num = Peek_Front_Queue(q);
+
+	if(num == 0)
+		printf("Queue is empty\n");
+	else
+		printf("front of Queue is %d\n",num);
 
 	return;
 }
 
-void peek_rear_screen()
+void peek_rear_screen(int *q)
 {
-	Peek_Rear_Queue();
+	int num = Peek_Rear_Queue(q);
+
+	if(num == 0)
+		printf("Queue is empty\n");
+	else
+		printf("rear of Queue is %d\n",num);
 
 	return;
 }
@@ -296,10 +315,10 @@ int main()
 			initialization_screen();
 
 		else if(num == 6)	//Peek front Queue
-			peek_front_screen();
+			peek_front_screen(queue);
 
 		else if(num == 7)	//Peek rear Queue
-			peek_rear_screen();
+			peek_rear_screen(queue);
 
 		else if(num == 0)	//Exit Program
 		{
